@@ -12,7 +12,9 @@ def main():
             prod = Product(prod['name'], prod['description'], prod['price'],
                            prod['quantity'])
             print(f"Название: {prod.name}\nОписание: {prod.description}\n"
-                  f"Цена: {prod.price}")
+                  f"Цена: {prod.price}\nОстаток: {prod.quantity} шт")
+            print(f"Количество товаров: {category.number_of_unique_products}")
+            print(f"Количество категорий: {category.number_of_categories}")
 
 
 if __name__ == '__main__':

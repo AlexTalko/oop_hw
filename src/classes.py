@@ -11,11 +11,14 @@ class Category:
         self.goods = goods
 
         Category.number_of_categories += 1
+        Category.number_of_unique_products += len(self.goods)
 
     def __repr__(self):
         return (f"{self.name}"
                 f"{self.description}"
-                f"{self.goods}")
+                f"{self.goods}"
+                f"{self.number_of_categories}"
+                f"{self.number_of_unique_products}")
 
 
 class Product:
