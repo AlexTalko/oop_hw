@@ -17,6 +17,12 @@ class Category:
         """Добавляет :product в список goods"""
         self.__goods.append(product)
 
+    @property
+    def get_goods(self):
+        """Возвращает goods в нужном формате"""
+        for product in self.__goods:
+            return f'{product["name"]}, {product["price"]} руб, Остаток: {product["quantity"]} шт.'
+
     def __repr__(self):
         return (f"{self.name}"
                 f"{self.description}"
