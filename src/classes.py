@@ -13,8 +13,9 @@ class Category:
         Category.number_of_categories += 1
         Category.number_of_unique_products += len(self.__goods)
 
-    def set_goods(self, product):
+    def add_product(self, product):
         """Добавляет :product в список goods"""
+        product = Product(product["name"], product["description"], product["price"], product["quantity"])
         self.__goods.append(product)
 
     @property
