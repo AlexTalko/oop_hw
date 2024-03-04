@@ -1,7 +1,7 @@
 class Category:
     name = str
     description = str
-    goods = list
+    __goods = list
     number_of_categories = 0
     number_of_unique_products = 0
 
@@ -13,7 +13,7 @@ class Category:
         Category.number_of_categories += 1
         Category.number_of_unique_products += len(self.__goods)
 
-    def set_goods(self, product):
+    def add_goods(self, product):
         """Добавляет :product в список goods"""
         self.__goods.append(product)
 
