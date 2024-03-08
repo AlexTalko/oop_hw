@@ -31,8 +31,7 @@ class Category:
     def display_goods(self):
         return self.__goods
 
-    @property
-    def count_goods(self):
+    def __len__(self):
         """Вернет количество товаров в списке"""
         return len(self.__goods)
 
@@ -74,6 +73,9 @@ class Product:
         self.price = price
         if self.price <= 0:
             print("Некорректная цена")
+
+    def __str__(self):
+        return f"{self.name}, {self.price_product} руб. Остаток: {self.quantity} шт."
 
     def __repr__(self):
         return (f"{self.name} "

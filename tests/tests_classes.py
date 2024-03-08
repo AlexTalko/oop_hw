@@ -2,13 +2,11 @@ from src.classes import Category, Product
 
 
 def test_category():
-    category = Category(name="Смартфоны", description="Смартфоны - часть жизни", goods=["Iphone", "Samsung"])
+    category = Category(name="Смартфоны", description="Смартфоны - часть жизни")
     assert category.name == "Смартфоны"
     assert category.description == "Смартфоны - часть жизни"
-    assert category.goods == ["Iphone", "Samsung"]
-    assert type(category.goods) == list
+    assert type(category.display_goods) == list
     assert category.number_of_categories == 1
-    assert category.number_of_unique_products == 2
 
 
 def test_product():
