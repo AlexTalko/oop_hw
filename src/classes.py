@@ -35,6 +35,12 @@ class Category:
         """Вернет количество товаров в списке"""
         return len(self.__goods)
 
+    def __str__(self):
+        """
+    Для класса Category добавить строковое отображение в следующем виде:
+    Название категории, количество продуктов: 200 шт."""
+        return f"{self.name}, количество продуктов: {len(self.display_goods)} шт"
+
     def __repr__(self):
         return (f"{self.name}"
                 f"{self.description}"
@@ -74,7 +80,14 @@ class Product:
         if self.price <= 0:
             print("Некорректная цена")
 
+    def __add__(self, other):
+        """ Для класса Product необходимо добавить возможность складывать объекты между собой таким образом,
+        чтобы результат выполнения сложения двух продуктов был сложением сумм, умноженных на количество на складе."""
+        return self.price_product * self.quantity + other.price * other.quantity
+
     def __str__(self):
+        """Для класса Product добавить строковое отображение в следующем виде:
+            Название продукта, 80 руб. Остаток: 15 шт."""
         return f"{self.name}, {self.price_product} руб. Остаток: {self.quantity} шт."
 
     def __repr__(self):
