@@ -24,12 +24,17 @@ class Category:
         """Возвращает goods в нужном формате"""
         list_goods = ''
         for product in self.__goods:
-            list_goods += f'{product.name}, {product.price_product} руб. Остаток: {product.quantity}'
+            list_goods += f'{product.name}, {product.price_product} руб. Остаток: {product.quantity}\n'
         return list_goods
 
     @property
-    def goods(self):
+    def display_goods(self):
         return self.__goods
+
+    @property
+    def count_goods(self):
+        """Вернет количество товаров в списке"""
+        return len(self.__goods)
 
     def __repr__(self):
         return (f"{self.name}"
@@ -75,11 +80,3 @@ class Product:
                 f"{self.description} "
                 f"{self.price} "
                 f"{self.quantity} ")
-
-
-# category = Category(name="Смартфоны", description="Смартфоны - часть жизни")
-# product = Product(name="Iphone", description="Смартфон Apple", price=54_782.30, quantity=6)
-#
-# category.add_goods(product)
-# print(category.get_goods)
-# print(category.goods)
