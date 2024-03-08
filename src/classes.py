@@ -83,7 +83,7 @@ class Product:
     def __add__(self, other):
         """ Для класса Product необходимо добавить возможность складывать объекты между собой таким образом,
         чтобы результат выполнения сложения двух продуктов был сложением сумм, умноженных на количество на складе."""
-        return self.price_product * self.quantity + other.price * other.quantity
+        return self.price * self.quantity + other.price * other.quantity
 
     def __str__(self):
         """Для класса Product добавить строковое отображение в следующем виде:

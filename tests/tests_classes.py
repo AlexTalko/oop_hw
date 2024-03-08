@@ -18,11 +18,18 @@ def test_category(category_gadgets):
     assert ct2.number_of_categories == 2
     assert ct1.display_goods == []
 
-def test_product():
-    product = Product(name="Iphone", description="Смартфон Apple", price=54_782.30, quantity=6)
-    assert product.name == "Iphone"
-    assert product.description == "Смартфон Apple"
-    assert product.price == 54_782.30
-    assert product.quantity == 6
-    assert type(product.quantity) == int
-    assert type(product.price) == float
+
+@pytest.fixture
+def products():
+    prod1 = Product("Iphone", "Смартфон Apple", 10_000.30, 6)
+    prod2 = Product("Samsung", "Смартфон Samsung", 20_000, 15)
+    return prod1, prod2
+
+
+def test_product(products):
+    prod1, prod2 = products
+    assert prod1.name == "Iphone"
+    assert prod1.description == "Смартфон Apple"
+    assert prod2.quantity == 15
+    assert prod1 + prod2 == 360001.8
+    assert prod1.price_product == '10000.3 руб'
