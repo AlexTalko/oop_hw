@@ -15,7 +15,7 @@ def test_category(category_gadgets):
     assert ct1.description == "Смартфоны - часть жизни"
     assert ct2.name == "Смарт-часы"
     assert ct2.description == "Компьютер на руке"
-    assert ct2.number_of_categories == 2
+    assert ct2.count_categories == 2
     assert ct1.display_goods == []
 
 

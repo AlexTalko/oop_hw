@@ -2,16 +2,16 @@ class Category:
     name = str
     description = str
     goods = list
-    number_of_categories = 0
-    number_of_unique_products = 0
+    count_categories = 0
+    count_products = 0
 
     def __init__(self, name, description):
         self.name = name
         self.description = description
         self.__goods = []
 
-        Category.number_of_categories += 1
-        Category.number_of_unique_products += len(self.__goods)
+        Category.count_categories += 1
+        Category.count_products += len(self.__goods)
 
     def add_goods(self, product):
         """Добавляет :product в список goods"""
@@ -39,14 +39,14 @@ class Category:
         """
     Для класса Category добавить строковое отображение в следующем виде:
     Название категории, количество продуктов: 200 шт."""
-        return f"{self.name}, количество продуктов: {len(self.display_goods)} шт"
+        return f"{self.name}, количество продуктов: {Category.count_products} шт"
 
     def __repr__(self):
         return (f"{self.name}"
                 f"{self.description}"
                 f"{self.__goods}"
-                f"{self.number_of_categories}"
-                f"{self.number_of_unique_products}")
+                f"{self.count_categories}"
+                f"{self.count_products}")
 
 
 class Product:
