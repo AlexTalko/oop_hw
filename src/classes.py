@@ -2,8 +2,8 @@ class Category:
     name: str
     description: str
     goods: list
-    count_categories: 0
-    count_products: 0
+    count_categories = 0
+    count_products = 0
 
     def __init__(self, name, description):
         self.name = name
