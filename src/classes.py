@@ -1,9 +1,9 @@
 class Category:
-    name = str
-    description = str
-    goods = list
-    count_categories = 0
-    count_products = 0
+    name: str
+    description: str
+    goods: list
+    count_categories: 0
+    count_products: 0
 
     def __init__(self, name, description):
         self.name = name
@@ -41,19 +41,19 @@ class Category:
     Название категории, количество продуктов: 200 шт."""
         return f"{self.name}, количество продуктов: {Category.count_products} шт"
 
-    def __repr__(self):
-        return (f"{self.name}"
-                f"{self.description}"
-                f"{self.__goods}"
-                f"{self.count_categories}"
-                f"{self.count_products}")
+    # def __repr__(self):
+    #     return (f"{self.name}"
+    #             f"{self.description}"
+    #             f"{self.__goods}"
+    #             f"{self.count_categories}"
+    #             f"{self.count_products}")
 
 
 class Product:
-    name = str
-    description = str
-    price = float
-    quantity = int
+    name: str
+    description: str
+    price: float
+    quantity: int
 
     def __init__(self, name, description, price, quantity):
         self.name = name
@@ -76,13 +76,16 @@ class Product:
     @price_product.setter
     def price_product(self, price):
         """Устанавливает цену товара"""
-        self.price = price
         if self.price <= 0:
             print("Некорректная цена")
+        else:
+            self.price = price
 
     def __add__(self, other):
-        """ Для класса Product необходимо добавить возможность складывать объекты между собой таким образом,
+        """Метод сложения товаров одного класса между собой таким образом,
         чтобы результат выполнения сложения двух продуктов был сложением сумм, умноженных на количество на складе."""
+        if not isinstance(self.__class__, other.__class__):
+            raise TypeError("Можно складывать товары только из одинаковых классов продуктов")
         return self.price * self.quantity + other.price * other.quantity
 
     def __str__(self):
@@ -90,8 +93,36 @@ class Product:
             Название продукта, 80 руб. Остаток: 15 шт."""
         return f"{self.name}, {self.price_product} руб. Остаток: {self.quantity} шт."
 
-    def __repr__(self):
-        return (f"{self.name} "
-                f"{self.description} "
-                f"{self.price} "
-                f"{self.quantity} ")
+    # def __repr__(self):
+    #     return (f"{self.name} "
+    #             f"{self.description} "
+    #             f"{self.price} "
+    #             f"{self.quantity} ")
+
+
+class SmartPhone(Product):
+    capacity: float  # производительность (измеряется в герцах)
+    model: str
+    memory: int
+    color: str
+
+    def __init__(self, name, description, price, quantity, capacity, model, memory, color):
+        super().__init__(name, description, price, quantity)
+        self.capacity = capacity
+        self.model = model
+        self.memory = memory
+        self.color = color
+
+
+class GrassLawn(Product):
+    country_man: str
+    germin_per: str
+    color: str
+
+    def __init__(self, name, description, price, quantity, country_man, germin_per, color):
+        super().__init__(name, description, price, quantity)
+        self.country_man = country_man
+        self.germin_per = germin_per
+        self.color = color
+
+
