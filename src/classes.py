@@ -84,9 +84,10 @@ class Product:
     def __add__(self, other):
         """Метод сложения товаров одного класса между собой таким образом,
         чтобы результат выполнения сложения двух продуктов был сложением сумм, умноженных на количество на складе."""
-        if not isinstance(self.__class__, other.__class__):
-            raise TypeError("Можно складывать товары только из одинаковых классов продуктов")
-        return self.price * self.quantity + other.price * other.quantity
+        if issubclass(self.__class__, other.__class__):
+            return self.price * self.quantity + other.price * other.quantity
+        else:
+            raise TypeError("Ошибка")
 
     def __str__(self):
         """Для класса Product добавить строковое отображение в следующем виде:
@@ -116,7 +117,7 @@ class SmartPhone(Product):
 
 class GrassLawn(Product):
     country_man: str
-    germin_per: str
+    germin_per: int
     color: str
 
     def __init__(self, name, description, price, quantity, country_man, germin_per, color):
@@ -124,5 +125,3 @@ class GrassLawn(Product):
         self.country_man = country_man
         self.germin_per = germin_per
         self.color = color
-
-
