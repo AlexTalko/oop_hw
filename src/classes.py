@@ -1,3 +1,18 @@
+from abc import ABC, abstractmethod
+
+
+class BaseProduct(ABC):
+    """Базовый продукт для общих свойств классов"""
+
+    @abstractmethod
+    def __init__(self, name, description, price, quantity):
+        pass
+
+    @abstractmethod
+    def __str__(self):
+        pass
+
+
 class Category:
     name: str
     description: str
@@ -41,15 +56,16 @@ class Category:
     Название категории, количество продуктов: 200 шт."""
         return f"{self.name}, количество продуктов: {Category.count_products} шт"
 
-    # def __repr__(self):
-    #     return (f"{self.name}"
-    #             f"{self.description}"
-    #             f"{self.__goods}"
-    #             f"{self.count_categories}"
-    #             f"{self.count_products}")
+
+class MixinRepr:
+    """Миксин для вывода информации о создании товара в консоль"""
+
+    def __repr__(self):
+        attributes = ', '.join([f"{key}={value}" for key, value in self.__dict__.items()])
+        return f"{self.__class__.__name__}({attributes})"
 
 
-class Product:
+class Product(BaseProduct, MixinRepr):
     name: str
     description: str
     price: float
@@ -94,14 +110,8 @@ class Product:
             Название продукта, 80 руб. Остаток: 15 шт."""
         return f"{self.name}, {self.price_product} руб. Остаток: {self.quantity} шт."
 
-    # def __repr__(self):
-    #     return (f"{self.name} "
-    #             f"{self.description} "
-    #             f"{self.price} "
-    #             f"{self.quantity} ")
 
-
-class SmartPhone(Product):
+class SmartPhone(Product, MixinRepr):
     capacity: float  # производительность (измеряется в герцах)
     model: str
     memory: int
@@ -114,8 +124,11 @@ class SmartPhone(Product):
         self.memory = memory
         self.color = color
 
+    def __repr__(self):
+        super().__repr__()
 
-class GrassLawn(Product):
+
+class GrassLawn(Product, MixinRepr):
     country_man: str
     germin_per: int
     color: str
