@@ -6,6 +6,10 @@ import pytest
 def category_gadgets():
     ct1 = Category("Смартфоны", "Смартфоны - часть жизни")
     ct2 = Category("Смарт-часы", "Компьютер на руке")
+    prod1 = Product("Iphone", "Смартфон Apple", 10_000.30, 6)
+    prod2 = Product("Samsung", "Смартфон Samsung", 20_000, 15)
+    ct1.add_goods(prod1)
+    ct1.add_goods(prod2)
     return ct1, ct2
 
 
@@ -16,7 +20,10 @@ def test_category(category_gadgets):
     assert ct2.name == "Смарт-часы"
     assert ct2.description == "Компьютер на руке"
     assert ct2.count_categories == 2
-    assert ct1.display_goods == []
+    assert ct1.count_products == 2
+    assert ct2.display_goods == []
+    assert str(ct1) == "Смартфоны, количество продуктов: 2 шт"
+    assert len(ct1) == 2
 
 
 @pytest.fixture
@@ -40,4 +47,3 @@ def test_product(products):
     assert prod3.price_product == '8745.1 руб'
     with pytest.raises(TypeError):
         prod3 + prod4
-

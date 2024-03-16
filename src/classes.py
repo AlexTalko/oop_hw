@@ -29,17 +29,17 @@ class Category:
 
     def add_goods(self, product):
         """Добавляет :product в список goods"""
-        Category.count_products += product.quantity
         if not isinstance(product, Product):
             raise TypeError("Продукт не соответствует классу")
         self.__goods.append(product)
+        Category.count_products += 1
 
     @property
     def get_goods(self):
         """Возвращает goods в нужном формате"""
         list_goods = ''
         for product in self.__goods:
-            list_goods += f'{product.name}, {product.price_product} руб. Остаток: {product.quantity}\n'
+            list_goods += f'{product.name}, {product.price_product} руб. Остаток: {product.quantity} \n'
         return list_goods
 
     @property
