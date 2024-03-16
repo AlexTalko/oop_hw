@@ -24,6 +24,7 @@ def test_category(category_gadgets):
     assert ct2.display_goods == []
     assert str(ct1) == "Смартфоны, количество продуктов: 2 шт"
     assert len(ct1) == 2
+    assert ct1.get_goods == 'Iphone, 10000.3 руб руб. Остаток: 6 \nSamsung, 20000 руб руб. Остаток: 15 \n'
 
 
 @pytest.fixture
