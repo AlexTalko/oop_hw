@@ -26,12 +26,12 @@ class Category:
         self.__goods = []
 
         Category.count_categories += 1
-        Category.count_products += len(self.__goods)
 
     def add_goods(self, product):
         """Добавляет :product в список goods"""
+        Category.count_products += product.quantity
         if not isinstance(product, Product):
-            raise TypeError("Ошибка")
+            raise TypeError("Продукт не соответствует классу")
         self.__goods.append(product)
 
     @property
