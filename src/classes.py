@@ -31,6 +31,8 @@ class Category:
         """Добавляет :product в список goods"""
         if not isinstance(product, Product):
             raise TypeError("Продукт не соответствует классу")
+        if product.quantity == 0:
+            raise ValueError("Нельзя добавить товар с количеством 0")
         self.__goods.append(product)
         Category.count_products += 1
 
@@ -45,6 +47,14 @@ class Category:
     @property
     def display_goods(self):
         return self.__goods
+
+    def average_price(self):
+        """Метод вычисляющий средний ценник товаров"""
+        try:
+            a_p = sum(product.price for product in self.__goods)
+            return a_p / len(self.__goods)
+        except ZeroDivisionError:
+            return 0
 
     def __len__(self):
         """Вернет количество товаров в списке"""
